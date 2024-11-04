@@ -7,6 +7,8 @@ import datetime
 import speech_recognition as sr
 # for searching things on wikipedia
 import wikipedia
+# for opening web applications
+import webbrowser
 
 
 engine=pyttsx3.init('sapi5')
@@ -64,6 +66,11 @@ if __name__=="__main__":
             results=wikipedia.summary(query,sentences=2)
             print(results)
             speak(f"According to wikipedia {results}")
-
+        # for opening web sites
+        sites=[["youtube","http://youtube.com"],["wikipedia"],["http://wikipedia.com"],["google","http://google.com"]]
+        for site in sites:
+            if(f"open {site[0]}".lower() in query.lower()):
+                speak(f"opening {site[0]} ...")
+                webbrowser.open(site[1])
        
     
