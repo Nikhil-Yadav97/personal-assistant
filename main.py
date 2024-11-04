@@ -5,6 +5,8 @@ import pyaudio
 import datetime
 # module for speech recognition
 import speech_recognition as sr
+# for searching things on wikipedia
+import wikipedia
 
 
 engine=pyttsx3.init('sapi5')
@@ -53,6 +55,15 @@ def takecommand():
 if __name__=="__main__":
     wish()
     while(True):
-        query=takecommand()
-        speak(query)
+        query=takecommand().lower()
+
+        # for basic searching tasks
+        if 'wikipedia' in query.lower():
+            speak("Searching wikipedia")
+            query=query.replace("wikipedia","")
+            results=wikipedia.summary(query,sentences=2)
+            print(results)
+            speak(f"According to wikipedia {results}")
+
+       
     
