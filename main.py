@@ -9,6 +9,9 @@ import speech_recognition as sr
 import wikipedia
 # for opening web applications
 import webbrowser
+# for getting current time
+import datetime
+
 
 
 engine=pyttsx3.init('sapi5')
@@ -72,5 +75,12 @@ if __name__=="__main__":
             if(f"open {site[0]}".lower() in query.lower()):
                 speak(f"opening {site[0]} ...")
                 webbrowser.open(site[1])
+
+        # for current time
+        if("the time" in query.lower()):
+            time=datetime.datetime.now().strftime("%H:%M:%S")
+            speak(f"the time is {time}")
+            print(f"Time:{time}")
+
+            
        
-    
