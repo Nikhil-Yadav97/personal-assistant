@@ -11,6 +11,7 @@ import wikipedia
 import webbrowser
 # for getting current time
 import datetime
+# for peforming system tasks
 import os
 
 
@@ -71,7 +72,7 @@ if __name__=="__main__":
             print(results)
             speak(f"According to wikipedia {results}")
         # for opening web sites
-        sites=[["youtube","http://youtube.com"],["wikipedia"],["http://wikipedia.com"],["google","http://google.com"]]
+        sites=[["youtube","http://youtube.com"],["wikipedia"],["http://wikipedia.com"],["google","http://google.com"],["lc","https://leetcode.com"],["greek for greek","https://www.geeksforgeeks.org"],["stack overflow","https://stackoverflow.com"]]
         for site in sites:
             if(f"open {site[0]}".lower() in query.lower()):
                 speak(f"opening {site[0]} ...")
