@@ -13,6 +13,10 @@ import webbrowser
 import datetime
 # for peforming system tasks
 import os
+# allow to send https request to websites
+import requests
+# parse html document and extract specific data
+from bs4 import BeautifulSoup
 
 
 
@@ -88,4 +92,16 @@ if __name__=="__main__":
         if("vs code" in query.lower()):
             speak("opening vs code")
             codepath="C:\\Users\\ay964\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
-            os.startfile(codepath)       
+            os.startfile(codepath)   
+
+        # tells current temperature
+        if("temperature" in query.lower()):
+            # construct url for search
+            url=f"https://www.google.com/search?q={query}"
+            r=requests.get(url)
+            # parse r.text to html code
+            data=BeautifulSoup(r.text,"html.parser")
+            # locate div with class BNeawe
+            temp=data.find("div",class_="BNeawe").text
+            print(f"Temperature is :{temp}")
+            speak(f"current temperature is {temp}")
