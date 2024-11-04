@@ -11,6 +11,7 @@ import wikipedia
 import webbrowser
 # for getting current time
 import datetime
+import os
 
 
 
@@ -82,5 +83,8 @@ if __name__=="__main__":
             speak(f"the time is {time}")
             print(f"Time:{time}")
 
-            
-       
+        #opens desktop applications
+        if("vs code" in query.lower()):
+            speak("opening vs code")
+            codepath="C:\\Users\\ay964\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+            os.startfile(codepath)       
