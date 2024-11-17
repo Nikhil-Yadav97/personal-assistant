@@ -88,7 +88,7 @@ if __name__=="__main__":
             speak(f"the time is {time}")
             print(f"Time:{time}")
 
-
+        # volume control feature
         if('increase volume' in query.lower()):
             pyautogui.press('volumeup')
         elif('decrease volume' in query.lower()):
