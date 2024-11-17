@@ -96,6 +96,18 @@ if __name__=="__main__":
         elif('volume mute' in query.lower()):
             pyautogui.press('volumemute')
 
+        # fn for saving the reminder
+        if 'remember that' in query:
+            message=query.replace("remember that","")
+            speak("message saved successfully")
+            remember=open('data.txt','w')
+            remember.write(message)
+            remember.close()
+
+        if('tell the last message'):
+            remember=open("data.txt",'r')
+            speak("you tell me that"+remember.read())
+            remember.close()
 
 
         #opens desktop applications
