@@ -9,8 +9,8 @@ import speech_recognition as sr
 import wikipedia
 # for opening web applications
 import webbrowser
-# for getting current time
-import datetime
+# for controlling system volume
+import pyautogui
 # for peforming system tasks
 import os
 # allow to send https request to websites
@@ -87,6 +87,16 @@ if __name__=="__main__":
             time=datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"the time is {time}")
             print(f"Time:{time}")
+
+
+        if('increase volume' in query.lower()):
+            pyautogui.press('volumeup')
+        elif('decrease volume' in query.lower()):
+            pyautogui.press('volumedown')
+        elif('volume mute' in query.lower()):
+            pyautogui.press('volumemute')
+
+
 
         #opens desktop applications
         if("vs code" in query.lower()):
