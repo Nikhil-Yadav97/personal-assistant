@@ -17,8 +17,7 @@ import os
 import requests
 # parse html document and extract specific data
 from bs4 import BeautifulSoup
-
-
+from GoogleNews import GoogleNews
 
 engine=pyttsx3.init('sapi5')
 voices=engine.getProperty('voices')
@@ -104,11 +103,25 @@ if __name__=="__main__":
             remember.write(message)
             remember.close()
 
-        if('tell the last message'):
+        if('tell the last message' in query):
             remember=open("data.txt",'r')
             speak("you tell me that"+remember.read())
             remember.close()
-
+        
+       
+        if 'news' in query:
+            googlenews = GoogleNews()
+            googlenews = GoogleNews(lang='en')
+            googlenews.search('Tech')
+            results = googlenews.get_texts()
+            if not results:
+                speak("Sorry, I couldn't fetch the news right now.")
+            else:
+                speak("Here are the latest tech news headlines:")
+                for i, headline in enumerate(results[:3]):  # Limiting to 5 headlines
+                    speak(f"{i+1}. {headline}")
+                    print(f"{i+1}. {headline}")
+        
 
         #opens desktop applications
         if("vs code" in query.lower()):
@@ -127,3 +140,6 @@ if __name__=="__main__":
             temp=data.find("div",class_="BNeawe").text
             print(f"Temperature is :{temp}")
             speak(f"current temperature is {temp}")
+            
+        if("stop" in query.lower()):
+            break;
