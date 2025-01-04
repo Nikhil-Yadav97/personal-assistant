@@ -17,7 +17,9 @@ import os
 import requests
 # parse html document and extract specific data
 from bs4 import BeautifulSoup
+# for news
 from GoogleNews import GoogleNews
+
 
 engine=pyttsx3.init('sapi5')
 voices=engine.getProperty('voices')
@@ -108,7 +110,8 @@ if __name__=="__main__":
             speak("you tell me that"+remember.read())
             remember.close()
         
-       
+        
+        # tell top 3 news
         if 'news' in query:
             googlenews = GoogleNews()
             googlenews = GoogleNews(lang='en')
@@ -118,7 +121,7 @@ if __name__=="__main__":
                 speak("Sorry, I couldn't fetch the news right now.")
             else:
                 speak("Here are the latest tech news headlines:")
-                for i, headline in enumerate(results[:3]):  # Limiting to 5 headlines
+                for i, headline in enumerate(results[:3]):  # Limiting to 3 headlines
                     speak(f"{i+1}. {headline}")
                     print(f"{i+1}. {headline}")
         
@@ -140,6 +143,15 @@ if __name__=="__main__":
             temp=data.find("div",class_="BNeawe").text
             print(f"Temperature is :{temp}")
             speak(f"current temperature is {temp}")
+
+        #for creating text file 
+        if "create file" in query:
+            speak("tell the file name")
+            file_name = takecommand() + ".txt"
+            with open(file_name, "w") as file:
+                pass
+            speak(f"File {file_name} has been created.")
             
+        # quit the program
         if("stop" in query.lower()):
             break;
